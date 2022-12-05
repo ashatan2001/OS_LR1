@@ -1,0 +1,9 @@
+﻿  lab1_2.cpp
+C:\LETI\OS\LR1\lab1_2\lab1_2\lab1_2.cpp(76,27): warning C4101: pointerToBeginning: неиспользованная локальная переменная
+C:\LETI\OS\LR1\lab1_2\lab1_2\lab1_2.cpp(76,11): warning C4101: readingBytes: неиспользованная локальная переменная
+C:\LETI\OS\LR1\lab1_2\lab1_2\lab1_2.cpp(139,31): warning C4244: аргумент: преобразование "DWORD64" в "LONG", возможна потеря данных
+C:\LETI\OS\LR1\lab1_2\lab1_2\lab1_2.cpp(174,36): warning C4244: =: преобразование "DWORD64" в "DWORD", возможна потеря данных
+C:\LETI\OS\LR1\lab1_2\lab1_2\lab1_2.cpp(176,30): warning C4244: =: преобразование "DWORD64" в "DWORD", возможна потеря данных
+C:\LETI\OS\LR1\lab1_2\lab1_2\lab1_2.cpp(201,36): warning C4244: =: преобразование "DWORD64" в "DWORD", возможна потеря данных
+C:\LETI\OS\LR1\lab1_2\lab1_2\lab1_2.cpp(203,30): warning C4244: =: преобразование "DWORD64" в "DWORD", возможна потеря данных
+  lab1_2.vcxproj -> C:\LETI\OS\LR1\lab1_2\Debug\lab1_2.exe
