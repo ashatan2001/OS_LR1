@@ -129,6 +129,35 @@ void getListDrives() {
 }
 
 void getDriveInfo() {
+    map <unsigned long, string> typeTable = { {0, "UNKNOWN"},
+                                              {1, "NO ROOT DIRECTORY"},
+                                              {DRIVE_REMOVABLE, "REMOVABLE DRIVE"},
+                                              {DRIVE_FIXED, "HARD DRIVE"},
+                                              {DRIVE_REMOTE, "REMOTE DRIVE"},
+                                              {DRIVE_CDROM, "CD ROM"},
+                                              {DRIVE_RAMDISK, "RAM"} };
+
+    map <unsigned long, string> fsFlagsTable = {{FILE_CASE_SENSITIVE_SEARCH, "FILE_CASE_SENSITIVE_SEARCH"},
+                                                {FILE_CASE_PRESERVED_NAMES, "FILE_CASE_PRESERVED_NAMES"},
+                                                {FILE_UNICODE_ON_DISK, "FILE_UNICODE_ON_DISK"},
+                                                {FILE_PERSISTENT_ACLS, "FILE_PERSISTENT_ACLS"},
+                                                {FILE_FILE_COMPRESSION, "FILE_FILE_COMPRESSION"},
+                                                {FILE_VOLUME_QUOTAS, "FILE_VOLUME_QUOTAS"},
+                                                {FILE_SUPPORTS_SPARSE_FILES, "FILE_SUPPORTS_SPARSE_FILES"},
+                                                {FILE_NAMED_STREAMS, "FILE_NAMED_STREAMS"},
+                                                {FILE_VOLUME_IS_COMPRESSED, "FILE_VOLUME_IS_COMPRESSED"},
+                                                {FILE_SUPPORTS_OBJECT_IDS, "FILE_SUPPORTS_OBJECT_IDS"},
+                                                {FILE_SUPPORTS_ENCRYPTION, "FILE_SUPPORTS_ENCRYPTION"},
+                                                {FILE_NAMED_STREAMS, "FILE_NAMED_STREAMS"},
+                                                {FILE_READ_ONLY_VOLUME, "FILE_READ_ONLY_VOLUME"},
+                                                {FILE_SEQUENTIAL_WRITE_ONCE, "FILE_SEQUENTIAL_WRITE_ONCE"},
+                                                {FILE_SUPPORTS_TRANSACTIONS, "FILE_SUPPORTS_TRANSACTIONS"},
+                                                {FILE_SUPPORTS_HARD_LINKS, "FILE_SUPPORTS_HARD_LINKS"},
+                                                {FILE_SUPPORTS_EXTENDED_ATTRIBUTES, "FILE_SUPPORTS_EXTENDED_ATTRIBUTES"},
+                                                {FILE_SUPPORTS_OPEN_BY_FILE_ID, "FILE_SUPPORTS_OPEN_BY_FILE_ID"},
+                                                {FILE_SUPPORTS_USN_JOURNAL, "FILE_SUPPORTS_USN_JOURNAL"},
+                                                {FILE_SUPPORTS_BLOCK_REFCOUNTING, "FILE_SUPPORTS_BLOCK_REFCOUNTING"} };
+
     wchar_t drive[MAX_PATH],
         volumeNameBuffer[MAX_PATH], 
         fileSystemNameBuffer[MAX_PATH];
@@ -139,13 +168,6 @@ void getDriveInfo() {
         bytesPerSector,
         numberOfFreeClusters,
         totalNumberOfClusters;
-    map <unsigned long, string> typeTable = { {0, "UNKNOWN"},
-                                              {1, "NO ROOT DIRECTORY"},
-                                              {DRIVE_REMOVABLE, "REMOVABLE DRIVE"},
-                                              {DRIVE_FIXED, "HARD DRIVE"},
-                                              {DRIVE_REMOTE, "REMOTE DRIVE"},
-                                              {DRIVE_CDROM, "CD ROM"},
-                                              {DRIVE_RAMDISK, "RAM"} };
 
     getListDrives();
     cout << "\nChoose drive: ";
@@ -157,14 +179,20 @@ void getDriveInfo() {
     cout << "Drive Type: " << typeTable[GetDriveType(drive)] << endl << endl;
 
     if (GetVolumeInformation(drive, volumeNameBuffer, sizeof(volumeNameBuffer),
-        &volumeSerialNumber, &maxComponentLength, &fileSystemFlags, 
+        &volumeSerialNumber, &maxComponentLength, &fileSystemFlags,
         fileSystemNameBuffer, sizeof(fileSystemNameBuffer)))
     {
         wcout << "Drive Volume Information:" << endl;
         wcout << "  Volume Name Buffer: " << volumeNameBuffer << endl;
         wcout << "  Volume Serial Number: " << volumeSerialNumber << endl;
         wcout << "  Maximum Component Length: " << maxComponentLength << endl;
-        wcout << "  file System Flags: " << fileSystemFlags << endl;
+
+        wcout << "  File System Flag: " << fileSystemFlags << endl;
+        cout << "  File System Flags: " << endl;
+        for (auto const& f : fsFlagsTable)
+            if (fileSystemFlags & f.first)
+                cout << "    " << f.second << endl;
+
         wcout << "  File System Name Buffer: " << fileSystemNameBuffer << endl << endl;
     } 
     else cout << "Error get Drive Volume Information" << endl;
