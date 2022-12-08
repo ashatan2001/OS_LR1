@@ -137,18 +137,18 @@ void getDriveInfo() {
                                               {DRIVE_CDROM, "CD ROM"},
                                               {DRIVE_RAMDISK, "RAM"} };
 
-    map <unsigned long, string> fsFlagsTable = {{FILE_CASE_SENSITIVE_SEARCH, "FILE_CASE_SENSITIVE_SEARCH"},
+    map <unsigned long, string> fsFlagsTable = { {FILE_CASE_SENSITIVE_SEARCH, "FILE_CASE_SENSITIVE_SEARCH"},
                                                 {FILE_CASE_PRESERVED_NAMES, "FILE_CASE_PRESERVED_NAMES"},
                                                 {FILE_UNICODE_ON_DISK, "FILE_UNICODE_ON_DISK"},
                                                 {FILE_PERSISTENT_ACLS, "FILE_PERSISTENT_ACLS"},
                                                 {FILE_FILE_COMPRESSION, "FILE_FILE_COMPRESSION"},
                                                 {FILE_VOLUME_QUOTAS, "FILE_VOLUME_QUOTAS"},
                                                 {FILE_SUPPORTS_SPARSE_FILES, "FILE_SUPPORTS_SPARSE_FILES"},
+                                                {FILE_SUPPORTS_REPARSE_POINTS, "FILE_SUPPORTS_REPARSE_POINTS"},
                                                 {FILE_NAMED_STREAMS, "FILE_NAMED_STREAMS"},
                                                 {FILE_VOLUME_IS_COMPRESSED, "FILE_VOLUME_IS_COMPRESSED"},
                                                 {FILE_SUPPORTS_OBJECT_IDS, "FILE_SUPPORTS_OBJECT_IDS"},
                                                 {FILE_SUPPORTS_ENCRYPTION, "FILE_SUPPORTS_ENCRYPTION"},
-                                                {FILE_NAMED_STREAMS, "FILE_NAMED_STREAMS"},
                                                 {FILE_READ_ONLY_VOLUME, "FILE_READ_ONLY_VOLUME"},
                                                 {FILE_SEQUENTIAL_WRITE_ONCE, "FILE_SEQUENTIAL_WRITE_ONCE"},
                                                 {FILE_SUPPORTS_TRANSACTIONS, "FILE_SUPPORTS_TRANSACTIONS"},
@@ -156,7 +156,8 @@ void getDriveInfo() {
                                                 {FILE_SUPPORTS_EXTENDED_ATTRIBUTES, "FILE_SUPPORTS_EXTENDED_ATTRIBUTES"},
                                                 {FILE_SUPPORTS_OPEN_BY_FILE_ID, "FILE_SUPPORTS_OPEN_BY_FILE_ID"},
                                                 {FILE_SUPPORTS_USN_JOURNAL, "FILE_SUPPORTS_USN_JOURNAL"},
-                                                {FILE_SUPPORTS_BLOCK_REFCOUNTING, "FILE_SUPPORTS_BLOCK_REFCOUNTING"} };
+                                                {FILE_SUPPORTS_BLOCK_REFCOUNTING, "FILE_SUPPORTS_BLOCK_REFCOUNTING"},
+                                                {FILE_SUPPORTS_INTEGRITY_STREAMS, "FILE_SUPPORTS_INTEGRITY_STREAMS"} };
 
     wchar_t drive[MAX_PATH],
         volumeNameBuffer[MAX_PATH], 
